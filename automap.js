@@ -17,18 +17,18 @@ function Map(options) {
   this.rooms = this.getRooms();
   this.initialPinchDistance = null;
   this.lastZoom = this.cameraZoom;
-  this.la;
   this.canvas.addEventListener("mousedown", this.onPointerDown.bind(this));
   this.canvas.addEventListener("touchstart", (event) =>
-    this.handleTouch(event, this.onPointerDown)
+    this.handleTouch(event, this.onPointerDown.bind(this))
   );
+
   this.canvas.addEventListener("mouseup", this.onPointerUp.bind(this));
   this.canvas.addEventListener("touchend", (event) =>
-    this.handleTouch(event, this.onPointerUp)
+    this.handleTouch(event, this.onPointerUp.bind(this))
   );
   this.canvas.addEventListener("mousemove", this.onPointerMove.bind(this));
   this.canvas.addEventListener("touchmove", (event) =>
-    this.handleTouch(event, this.onPointerMove)
+    this.handleTouch(event, this.onPointerMove.bind(this))
   );
   this.canvas.addEventListener("wheel", (event) =>
     this.adjustZoom(event.deltaY * this.SCROLL_SENSITIVITY)
@@ -221,9 +221,9 @@ Map.prototype.onPointerMove = function (event) {
   }
 };
 
-Map.prototype.onHandleTouch = function (event) {
+Map.prototype.handleTouch = function (event, singleTouchHandler) {
   if (event.touches.length == 1) {
-    this.singleTouchHandler(event);
+    singleTouchHandler(event);
   } else if (event.type == "touchmove" && event.touches.length == 2) {
     this.isDragging = false;
     this.handlePinch(event);
