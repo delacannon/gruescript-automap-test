@@ -1,8 +1,6 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-
-		<title>Gruescript | Automap</title>
 		<style type="text/css">
 			
 /* "exportable" CSS, i.e., whatever should be included in the downloaded games */
@@ -5517,7 +5515,7 @@ ConversationVerbs = [
 
 			<div id="scroller">
 				<div id="scroller_content"><p><span class="new_message"><u>CLOAK OF DARKNESS</u><br>By Roger Firth, adapted to Gruescript by Robin Johnson</span></p><p><span class="new_message">For instructions, click: <button class="instructions" onclick="instructions();">instructions</button>
-</span></p><p><span class="new_message">You're in the foyer of the Opera House.</span></p></div>
+</span></p></div>
 			</div>
 
 			<div id="conversation">
@@ -5573,12 +5571,12 @@ Exits: <button type="button" class="direction" onclick="go('north')">north</butt
 			</div>
 
 			
-			<div id="map" style="display: none;">
+			<div id="map">
 
-				<p style="text-decoration: underline;" data-localisation_key="map_title">Display map</p>
-				<canvas id="canvas" width="768" height="512" style="background-color: rgb(153, 153, 255);"></canvas>
 				<p style="text-align: center;"><button type="button" onclick="hide_map()" data-localisation_key="map_close">Close map</button></p>
-				
+
+				<canvas id="canvas" width="768" height="512" style="background-color: rgb(153, 153, 255);"></canvas>
+			
 			</div>
 		
 			
@@ -5642,8 +5640,8 @@ game Cloak of Darkness # Game title
 id CLOD # game ID (used to identify cookies; should be unique on your site)
 author Roger Firth, adapted to Gruescript by Robin Johnson
 version 0.0.1
+map on
 person 2 # 2nd person, i.e. "You are in..."
-map on # map off deactive the map 
 examine off # if 'on', the verb 'examine' will be implemented by clicking nouns
 status { $Room } | { $cloaked } # '|' divides left and right ends of status bar
 
